@@ -1,0 +1,12 @@
+Stand 6
+
+1dof:
+A - driver
+C - Oscillator (+magnet)
+Soft springs
+Magnets attached vertically
+
+2dof:
+A - driver
+B - oscillator 1 (with magnet)
+C - oscillator 2 (with magnet)
