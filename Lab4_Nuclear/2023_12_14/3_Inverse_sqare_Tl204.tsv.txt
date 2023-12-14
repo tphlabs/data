@@ -1,0 +1,21 @@
+Description				
+Number of Runs	1			
+Preset Time	60			
+Pause Time	0			
+Alarm Level	3000			
+High Voltage	900			
+Step Voltage	0			
+Volume	0			
+				
+Run	High		Elapsed	
+Number	Voltage	Counts	Time	Date/Time
+1	900	429	60	12/14/23 11:29:02 AM
+2	900	491	60	12/14/23 11:30:22 AM
+3	900	646	60	12/14/23 11:32:16 AM
+4	900	805	60	12/14/23 11:34:18 AM
+5	900	1033	60	12/14/23 11:35:32 AM
+6	900	1465	60	12/14/23 11:36:48 AM
+7	900	2000	60	12/14/23 11:38:22 AM
+8	900	3077	60	12/14/23 11:39:45 AM
+9	900	5121	60	12/14/23 11:41:04 AM
+10	900	8587	60	12/14/23 11:42:49 AM
