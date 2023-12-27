@@ -1,3 +1,6 @@
+# beta range in Al
+# Sr-90 (sample #4) setup#2
+# width in mm, intensity in counts, acq time in sec
 3.12 336 600
 2.51 736 400
 2.23 676 200
