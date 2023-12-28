@@ -1,8 +1,12 @@
 # beta range in Al
 # Tl-204 (sample #3) setup#1
 # width in mm, intensity in counts, acq time in sec
-0  325  10
-0  311  20
-0  611  20
 0.400  364  200
 0.720  456  1000
+0.320  922  200
+0.240  390  60
+0.160  690  60
+0.080  606  30
+0.040  737  30
+0.000  985  30
+
