@@ -1,0 +1,19 @@
+# beta range in Al
+# Cs-137 (sample #1) 
+# setup #1 
+# shelf #3 
+# 900 V
+# label down
+# width in mm, intensity in counts, acq time in sec
+0.000  1278  30
+3.190  338  300
+2.520  297  300
+1.990  252  200
+0.980  250  200
+0.480  408  81
+0.320  600  60
+0.240  593  40
+0.160  647  30
+0.080  511  20
+0.040  726  20
+0.000  774  20
