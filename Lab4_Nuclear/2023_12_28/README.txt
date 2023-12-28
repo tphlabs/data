@@ -3,4 +3,3 @@ beta decay measurements
 Tl-204
 Cs-137
 Co-60
-Sr-90
