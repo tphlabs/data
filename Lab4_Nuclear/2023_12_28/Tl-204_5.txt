@@ -2,6 +2,7 @@
 # Tl-204 (sample #5) 
 # setup #2 
 # shelf #3 
+# 900 V
 # label down
 # width in mm, intensity in counts, acq time in sec
 0.720 469  1000
