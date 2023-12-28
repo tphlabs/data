@@ -2,9 +2,13 @@
 # Cs-137 (sample #1) 
 # setup #1 
 # shelf #10 
+# 900 V
 # label down
 # width in mm, intensity in counts, acq time in sec
 12.49  384  1000
 3.13  263  600
 2.52  247  600
-
+2.22  243  600
+1.99  229  600
+0.000  327  60
+0.040  
