@@ -1,5 +1,5 @@
 # beta range in Al
-# Tl-204 (sample #??) 
+# Tl-204 (sample #7) 
 # setup #3 
 # shelf #3 
 # label down
@@ -20,3 +20,4 @@
 0.560  495  500
 0.640  368  600
 0.720  488  800
+0.970  527  1000
