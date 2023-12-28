@@ -1,5 +1,7 @@
 # beta range in Al
 # Tl-204 (sample #3) setup#1
+# shelf #
+# 900 V
 # width in mm, intensity in counts, acq time in sec
 0.400  364  200
 0.720  456  1000
