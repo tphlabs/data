@@ -1,4 +1,5 @@
 # %Cs-137		
+# width in mm, intensity in counts, acq time in sec
 0	878	20
 0.04	700	20
 0.08	845	30
