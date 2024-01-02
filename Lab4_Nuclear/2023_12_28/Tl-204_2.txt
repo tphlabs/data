@@ -1,0 +1,24 @@
+# 2023-12-28 at Vwork=900V			
+#			
+# Background=108; %dt=300sec, in counts			
+# 2023-12-28 at Vwork=900V			
+#			
+# Background=108; %dt=300sec, in counts			
+#			
+# % bata range in Al			
+# % Tl-204 (sample #2) setup#4			
+# % in um , in sec, in counts			
+0	1123	30	
+0.04	892	30	
+0.08	964	40	
+0.12	1003	50	
+0.16	757	50	
+0.2	679	60	
+0.24	740	90	
+0.28	1373	200	
+0.32	938	200	
+0.36	712	200	
+0.4	858	300	
+0.44	622	300	
+0.48	625	400	
+0.56	461	500	
