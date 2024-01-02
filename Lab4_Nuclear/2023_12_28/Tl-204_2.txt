@@ -7,7 +7,7 @@
 #			
 # % bata range in Al			
 # % Tl-204 (sample #2) setup#4			
-# % in um , in sec, in counts			
+# % in mm , in counts, in sec,
 0	1123	30	
 0.04	892	30	
 0.08	964	40	
