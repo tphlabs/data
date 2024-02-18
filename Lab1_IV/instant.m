@@ -10,15 +10,14 @@ clear
 L = 1270e-3;  dL = 5e-3;  % mm
 l = 124.5e-3; dl = 0.1e-3; % mm
 h = 16.0e-3; dh = .1e-3; % mm
-g = 9.7949; % m/s2 - error is negligible
+g = 9.7949; dg = 0.0001; % m/s2 - error is negligible
 N = 236;
 
 a =  g * h / L;
 da = a * sum_errors(dL/L,  dh/h);
 
-%% Experiment 0 - zero acceleration
-% import measurements to vector t
-url = "https://raw.githubusercontent.com/tphlabs/data/main/Lab1_IV/d000.txt"; % place here path to your data
+%% import measurements and cut parabola
+url = "https://raw.githubusercontent.com/tphlabs/data/main/Lab1_IV/d160.txt"; % place here path to your data
 data = readmatrix(url);
 t = data(:,2); % time in column 2
 count = data(:, 4); % counts B
@@ -28,91 +27,125 @@ xlabel('Points')
 ylabel('Kruze sensor counts')
 
 % Cut parabola
-ix0 = 1;
-ix1 =5000;
-
-t = t(ix0: ix1) - t(ix0);
-count = count(ix0:ix1);
-x = - count * l / N;
-
-[a0, a0_err, ] = get_acc(t, x);
-
-
-%% Experiment 1
-% import measurements to vector t
-url = "https://raw.githubusercontent.com/tphlabs/data/main/Lab1_IV/d160.txt"; % place here path to your data
-data = readmatrix(url);
-t = data(:,2); % time in column 2
-count = data(:, 4); % counts B
-figure(2)
-plot(count, '.')
-xlabel('Points')
-ylabel('Kruze sensor counts')
-
-% Cut parabola
-ix0 = 105;
+ix0 = 120;
 ix1 = 374;
 
 t = t(ix0: ix1) - t(ix0);
 count = count(ix0:ix1);
 x = - count * l / N;
 
-[a_fit, a_fit_err, v0_fit] = get_acc(t, x);
-grid on
+%% fit parabola
 
-% Instant velocity as discrete derivative
-n = 5;
-dx = x(1 + 2*n: end) - x(1: end - 2*n);
-dt = mean(diff(t));
-v1 = dx ./ (2*n*dt);
-t1 = t(1+n: end-n) + dt/2;
-
-figure(4)
+figure(2)
 hold on
 grid on
-plot(t1*1e3, v1*1e3, '.')
+[a1, a1_err, model] = get_accx(t, x);
+
+a1txt = valuetxt('a1', a1*1e3,  a1_err*1e3, 'mm/s2');
+plot(t, x, 'b.')
+plot(model)
+xlabel('time, ,s')
+ylabel('Displacement, mm')
+legend('Kruze data', a1txt)
+
+%% Instant velocity as discrete derivative with different n
+figure(3)
+subplot(3,1,1)
+n = 1;
+hold on
+grid on
+[t1, v1] = get_derivative(t, x, n);
+[a2, a2_err, model] = get_accv(t1, v1);
+a2txt = valuetxt('a2', a2*1e3,  a2_err*1e3, 'mm/s2');
+plot(t1, v1, '.')
+plot(model)
 xlabel('Time, ms')
-ylabel('Velocity, mm/s')
+ylabel('Velocity, m/s')
+legend(sprintf('n=%d',n), a2txt)
 
-v_fit = v0_fit + t * a_fit;
-plot(t*1e3, v_fit*1e3)
+subplot(3,1,2)
+n = 2;
+hold on
+grid on
+[t1, v1] = get_derivative(t, x, n);
+[a2, a2_err, model] = get_accv(t1, v1);
+a2txt = valuetxt('a2', a2*1e3,  a2_err*1e3, 'mm/s2');
+plot(t1, v1, '.')
+plot(model)
+xlabel('Time, ms')
+ylabel('Velocity, m/s')
+legend(sprintf('n=%d',n), a2txt)
 
-v_theor = v0_fit + t * (a + a0);
-plot(t*1e3, v_theor*1e3)
+subplot(3,1,3)
+n = 5;
+hold on
+grid on
+[t1, v1] = get_derivative(t, x, n);
+[a2, a2_err, model] = get_accv(t1, v1);
+a2txt = valuetxt('a2', a2*1e3,  a2_err*1e3, 'mm/s2');
+plot(t1, v1, '.')
+plot(model)
+xlabel('Time, ms')
+ylabel('Velocity, m/s')
+legend(sprintf('n=%d',n), a2txt)
 
-expected_text = sprintf('Expected a: \n %.1f ± %.1f mm/s2', (a + a0)*1e3, sum_errors(da, a0_err)*1e3);
-fit_text      = sprintf('Fitted a: %.1f ± %.1f mm/s2', a_fit*1e3, a_fit_err*1e3);
-
-legend('Derivative', fit_text, expected_text)
 
 %% Friction coefficient as a difference of up and down acceleration 
 middle = round(length(x) / 2);
-xup = x(1:middle);
-tup = t(1:middle);
-xdown = x(middle:end);
+xup = x(middle:-1:1); % revert direction to start from peak and go down
+tup = t(middle:-1:1);
+xdown = x(middle:end); % keep direction from peak and go down
 tdown = t(middle:end);
 
-[aup, aup_err, ] = get_acc(tup, xup);
-[adown, adown_err, ] = get_acc(tdown, xdown);
+[aup, aup_err, modelup] = get_accx(tup, xup);
+auptxt = valuetxt('aup', aup*1e3,  aup_err*1e3, 'mm/s2');
+[adown, adown_err, modeldown] = get_accx(tdown, xdown);
+adowntxt = valuetxt('adown', adown*1e3,  adown_err*1e3, 'mm/s2');
 
 mu = (aup - adown) / 2 / g;
 mu_err = sum_errors(aup_err, adown_err) / g;
+mu_err = mu * sum_errors(mu_err/mu, dg);
 mu_text  = sprintf('mu: %.1e ± %.1e', mu, mu_err);
+figure(4)
+hold on
+grid on
+plot(modelup, 'blue', 'predfunc', 0.95)
+plot(modeldown, 'green', 'predfunc', 0.95)
+legend(auptxt, adowntxt)
+
 
 %% Functions
 function [answer] = sum_errors(dx, dy)
     answer = sqrt(dx^2 + dy^2);
 end
 
-% get acceleration with 95% confidence interval and initial velocity 
-% out of vectors t, x
-function [acc, acc_err, v0] = get_acc(t, x)
-    [model,goodness] = fit(t, x,'poly2');
-    
+% get acceleration with 95% confidence interval
+% out ov vectors t, x
+function [acc, acc_err, model] = get_accx(t, x)
+    model = fit(t, x,'poly2');
     acc = model.p1 * 2;
-    v0 = model.p2;
-    
     ci = confint(model, 0.95); % confidence intervals
-    acc_err = abs(ci(2,1) - ci(1,1)) / 2; % uncertainty of a
+    acc_err = abs(ci(2,1) - ci(1,1)); % uncertainty of acc
+end
 
+% get acceleration with 95% confidence interval
+% out of vectors t, v
+function [acc, acc_err, model] = get_accv(t, v)
+    model = fit(t, v,'poly1');
+    acc = model.p1;
+    ci = confint(model, 0.95); % confidence intervals
+    acc_err = abs(ci(2,1) - ci(1,1)) /2 ; % uncertainty of acc
+end
+
+% get first discrete derivative with parameter n
+function [t1, v1] = get_derivative(t, x, n)
+    dx = x(1 + 2*n: end) - x(1: end - 2*n);
+    dt = mean(diff(t));
+    v1 = dx ./ (2*n*dt);
+    t1 = t(1+n: end-n) + dt/2;
+end
+
+% format value and error
+function [answer] = valuetxt(comment, value, error, units)
+    answer = sprintf('%s: %.1f ± %.1f %s', comment, value, error, units);
 end
