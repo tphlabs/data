@@ -1,6 +1,6 @@
 Evgeny, set#13
 
-L = 127.0 +- 5 mm
+L = 1270 +- 5 mm
 
 **Cart**:
 
