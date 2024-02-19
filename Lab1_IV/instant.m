@@ -50,44 +50,44 @@ legend('Kruze data', a1txt)
 
 %% Instant velocity as discrete derivative with different n
 figure(3)
-subplot(3,1,1)
-n = 1;
-hold on
-grid on
-[t1, v1] = get_derivative(t, x, n);
-[a2, a2_err, model] = get_accv(t1, v1);
-a2txt = valuetxt('a2', a2*1e3,  a2_err*1e3, 'mm/s2');
-plot(t1, v1, '.')
-plot(model)
-xlabel('Time, ms')
-ylabel('Velocity, m/s')
-legend(sprintf('n=%d',n), a2txt)
+ns = [1,3,30];
+N = length(ns);
+for ix = 1 : length(ns)
+    n = ns(ix);
+    subplot(3, N, 3*ix-2)
+    grid on
+    tt = t(1:n:end);
+    xx = x(1:n:end);
+    [a1, a1_err, model] = get_accx(tt, xx);
+    a1txt = valuetxt('a', a1*1e3,  a1_err*1e3, 'mm/s2');
+    plot(tt, xx, '.')
+    xlabel('Time, s')
+    ylabel('Displacement, m')
 
-subplot(3,1,2)
-n = 2;
-hold on
-grid on
-[t1, v1] = get_derivative(t, x, n);
-[a2, a2_err, model] = get_accv(t1, v1);
-a2txt = valuetxt('a2', a2*1e3,  a2_err*1e3, 'mm/s2');
-plot(t1, v1, '.')
-plot(model)
-xlabel('Time, ms')
-ylabel('Velocity, m/s')
-legend(sprintf('n=%d',n), a2txt)
+    subplot(3, N, 3*ix-1)
+    hold on
+    grid on
+    [t1, v1] = get_derivative(t, x, n);
+    [a2, a2_err, model] = get_accv(t1, v1);
+    a2txt = valuetxt('a2', a2*1e3,  a2_err*1e3, 'mm/s2');
+    plot(t1, v1, '.')
+    plot(model)
+    xlabel('Time, s')
+    ylabel('Velocity, m/s')
+    legend(sprintf('n=%d',n), a2txt)
 
-subplot(3,1,3)
-n = 5;
-hold on
-grid on
-[t1, v1] = get_derivative(t, x, n);
-[a2, a2_err, model] = get_accv(t1, v1);
-a2txt = valuetxt('a2', a2*1e3,  a2_err*1e3, 'mm/s2');
-plot(t1, v1, '.')
-plot(model)
-xlabel('Time, ms')
-ylabel('Velocity, m/s')
-legend(sprintf('n=%d',n), a2txt)
+    subplot(3, N, 3*ix)
+    grid on
+    [tt, a_secondderivative] = get_derivative(t1, v1, n); % very, very bad approach
+    a_unitless = a_secondderivative / a; % expected to be 1
+    plot(tt, a_secondderivative, '.')
+    xlabel('Time, s')
+    ylabel('Acceleration, m/s^2')
+    a_sd_err = std(a_secondderivative) / sqrt(length(a_secondderivative));
+    a_sd_mean=  mean(a_secondderivative);
+    a_sdtxt = valuetxt('a_sd', a_sd_mean*1e3,  a_sd_err*1e3, 'mm/s2');
+    legend(a_sdtxt)
+end
 
 
 %% Friction coefficient as a difference of up and down acceleration 
