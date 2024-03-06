@@ -11,6 +11,6 @@ acceleration.txt
 Rotating disk with external force applied aceleration data.
 Data: 10 points on 2pi turnover
 r = 25 mm /2   # momentum force lever 
-m = 26.2 g     # momentum force height
+m = 26.9 g     # momentum force height
 
 Experiment date: 05.03.2024, Dani Abkin, Evgeny Kolonsky
