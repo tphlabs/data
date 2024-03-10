@@ -1,7 +1,7 @@
-Set #16
-cart a: m = 208.7 g
-cart b: m = 211.5 g
-magnets m = 7.0 g
+Set #13
+cart b: m = 215.5 g
 l = 97.95 mm
-k1 (strong) m = 12.2 g, delta m = 60.2 g
-k1 (weak) m = 17.6 g, delta m = 43.5 g
+N = 236
+l = 125 mm
+k2 (strong) m = 11.7 g, delta m = 63.94 g
+k1 (weak) m = 16.3 g, delta m = 23.6 g
