@@ -12,4 +12,6 @@ Diaphragm 2 mm
 
 Crystal LiF
 
-Gate time 3 s
+Mo_LiF.txt - Gate time 3 s
+
+Mo_liF_2.txt - gate time 4 s
