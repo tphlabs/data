@@ -1,5 +1,6 @@
-X-ray (ID 01) / Crystal angle θ_c	X-ray (ID 01) / Impulse Imp
-θ_c/°	Imp/# / s
+# X-ray (ID 01) / Crystal angle θ_c	X-ray (ID 01) / Impulse Imp
+# Gate time 3 s
+# θ_c/°	Imp/# / s
 
 5.0	77
 5.1	86
