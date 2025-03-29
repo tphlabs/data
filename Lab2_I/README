@@ -1,0 +1,21 @@
+Inductance Experiment
+
+set I02
+
+- Trace 0 : up, N=50, h=36-11
+- Trace 1 : down, N=50, h=36-11
+- Trace 2 : up, N=20, h=36-11
+- Trace 3 : down, N=20, h=36-11
+- Trace 4 : up, N=10, h=36-11
+- Trace 5 : down, N=10, h=36-11
+- Trace 6 : up, N=50, h=20-11
+- Trace 7 : up, N=50, h=24-11
+- Trace 8 : up, N=50, h=28-11
+- Trace 9 : up, N=50, h=32-11
+- Trace 10: up, N=50, h=36-11
+- Trace 11: up, N=50, h=40-11
+- Trace 12: up, N=50, h=44-11
+- Trace 13: up, N=50, h=48-11
+- Trace 14: up, N=50, h=52-11
+- Trace 15: up, N=50, h=56-11
+- Trace 16: up, N=50, h=60-11
