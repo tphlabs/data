@@ -23,7 +23,7 @@ sigma_mu = sigma / sqrt(N);
 % suspected_outlier and his index
 [suspected, ix] = max(abs(t - mu)/sigma/sqrt(2));
 
-P = (1 - cdf('normal', suspected)) + cdf('normal', -suspected);
+P = 1 - erf(suspected);
 % Chauvenet criterion value to be compared with 1/2
 if N * P < .5
   % 'outlier: to be deleted'
