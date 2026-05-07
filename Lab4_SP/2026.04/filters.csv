@@ -1,0 +1,12 @@
+# Fiilters measurements
+# nominal/nm, measured /nm, uncertainty/nm
+1, 400,  broken
+2, 450,  replaced by pair of sqare filters
+3, 500, 507,±5
+4, 550, 553,±5
+5, 600, 605,±5
+6, 700, 700,±10
+7, 800, 802,±5
+8, 900, 902,±5
+9, 1000, 1000,±10
+10, 1100, broken
