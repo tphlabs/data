@@ -8,3 +8,5 @@ C =100 nF
 
   R_internal = 50 Ohm
 
+  Signal pulse 5Vpp 
+
